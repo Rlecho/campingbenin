@@ -1,0 +1,52 @@
+{% extends "Campingbenin/base.html" %}
+
+{% block content %}
+
+<h2>Récapitulatif de votre réservation :</h2>
+<p>Nom : {{ reservation.client_name }}</p>
+<p>Email : {{ reservation.client_email }}</p>
+<p>Téléphone : {{ reservation.client_phone }}</p>
+<p>Date : {{ reservation.date }}</p>
+<p>Nombre de personnes : {{ reservation.party_size }}</p>
+<p>Total : {{ reservation.total_amount }}</p>
+<br>
+<br>
+               <kkiapay-widget 
+					    sandbox="true" amount="2"
+                   key="821d754fbdad8f18284a3c36cb7dd090fa64890a"
+						 callback="http://127.0.0.1:9000/paiement_retour/"
+						 > Réserver et Payer
+					</kkiapay-widget>
+
+{% comment %} 
+               <kkiapay-widget 
+   sandbox="true"
+   amount="5"
+   key="821d754fbdad8f18284a3c36cb7dd090fa64890a"
+   position="center"
+   callback="http://127.0.0.1:9000/paiement_retour/"> Payer     
+</kkiapay-widget> {% endcomment %}
+
+{% endblock content %}
+
+{% block script %}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.kkiapay.me/k.js"></script>
+
+<script>
+
+   addSuccessListener(response => {
+      console.log(response);
+  });
+
+ addFailedListener(error => {
+      console.log(error);
+  });
+
+</script>
+
+
+
+{% endblock script %}

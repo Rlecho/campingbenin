@@ -1,0 +1,356 @@
+{% extends 'Campingbenin/base2.html' %}
+ {% load static %}
+	{% block style %}
+	<style>
+		.slide1 {
+			opacity: 0;
+			transform: translateY(50px);
+			transition: opacity 0.5s ease, transform 0.5s ease;
+
+		}
+
+		.slide1.active {
+		  opacity: 1;
+		  transform: translateY(0);
+		}
+		.slide1 h6,
+		.slide1 p {
+		  opacity: 0;
+		  transform: translateY(50px);
+		  transition: opacity 0.5s ease, transform 0.5s ease;
+		}
+
+		.slide1.active h6,
+		.slide1.active p {
+		  opacity: 1;
+		  transform: translateY(0);
+		  transition-delay: 0.3s;
+		}
+
+		.ddd {
+		width:500px;
+		opacity: 0;
+		transform: translateX(-150%);
+		animation: slideIn 2s ease-out forwards;
+		}
+		.dd{
+		margin: 20px;
+		background-color: rgba(18, 18, 48, 0.908);
+		border-radius: 20px;
+		}
+		.ddd h6, .ddd p {
+		opacity: 0;
+		transform: translateY(50px);
+		/* animation: slideIns 1s ease-out forwards; */
+		 animation: slideIns 5s ease-out 2s forwards;
+		 animation-iteration-count: infinite;
+		}
+
+		@keyframes slideIns {
+		  from {
+			opacity: 0;
+			transform: translateY(50px);
+		  }
+		  to {
+			opacity: 1;
+			transform: translateY(0);
+		  }
+		}
+
+		@keyframes slideIn {
+		  from {
+			opacity: 0;
+			transform: translateX(-150%);
+		  }
+		  to {
+			opacity: 1;
+			transform: translateX(0);
+		  }
+		}
+
+
+		.blink {
+			text-align: center;
+			display: inline-block;
+			border-radius:10px;
+			position:absolute;
+			margin-bottom:-60px;
+			right: 10px;
+		  }   
+		  .blink p {
+			display: inline-block;
+			margin: 0;
+			padding: 20px;
+			font-size: 14px;
+			
+			color: #FFF;
+			{% comment %} /* background-color: #000; */ {% endcomment %}
+			animation: blink 1s infinite;
+		  }
+		  
+		  @keyframes blink {
+			50% {
+			  opacity: 0;
+			}
+		  }
+		  
+		.scroll-text  
+		   {
+			{% comment %} white-space: nowrap;
+			display: inline-block; {% endcomment %}
+			animation: marquee 20s linear infinite;
+			margin-top:80px;
+			font-size: 30px;
+			font-weight: 900px;
+			color: orange;
+		  }
+		  
+		  @keyframes marquee {
+			0% {
+			  transform: translateX(100%);
+			}
+			100% {
+			  transform: translateX(-100%);
+			}
+		  }	
+
+
+		  .card1 {
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			height:270px;
+			width:300px;
+			padding: 20px;
+			margin: 20px;
+			background-color:#fff;
+			position: absolute;
+			bottom: 40px;
+			{% comment %} left: 20px; {% endcomment %}
+			{% comment %} top: 20px; {% endcomment %}
+			right: 20px; 
+		  }
+	
+		  /* Style pour le titre */
+		  .card1-title {
+			font-size: 24px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		  }
+	
+		  /* Style pour la description */
+		  .card1-description {
+			font-size: 14px;
+			margin-bottom: 20px;
+		  }
+	
+		  /* Style pour le bouton */
+		  .card1-button {
+			display: block;
+			padding: 10px 20px;
+			margin-top:-10px; 
+			margin-left:50px; 
+			background-color: #faa200;
+			{% comment %} background-color: #007bff; {% endcomment %}
+			color: #000;
+			font-weight:bold;
+			text-align: center;
+			text-decoration: none;
+			border-radius: 5px;
+			width:150px;
+			height:40px;
+		  }
+	
+		  .card1-button:hover {
+			background-color: #001042;
+			{% comment %} background-color: #0069d9; {% endcomment %}
+		  }
+
+		  .typing-text {
+			{% comment %} display: inline-block; {% endcomment %}
+			overflow: hidden;
+			color:#fff;
+			margin-top:-200px;
+			font-size: 35px;
+			animation: typing 8s steps(30, end) infinite;
+		  }
+		  
+		  @keyframes typing {
+			from { width: 0; }
+			to { width: 100%; }
+		  }
+		  
+	</style>
+	{% endblock style %}
+
+
+	{% block content %}
+
+{% comment %} 
+<section class="ftco-section" style='margin-top:-100px; padding-bottom:30px'>
+ <div class="container">
+	<div class="row">
+	    <div class="col-md-12">
+		<div class="slider-hero">
+			<div class="featured-carousel owl-carousel" >
+				<div class="item">
+			<div class="work" style='margin-bottom:50px;'>
+				<div class="img d-flex align-items-center justify-content-center">
+		<div class="text text-center">
+			<div class="container dd" style="height: 230px;margin-bottom:50px;">
+				<div class="row">
+					<div class="col-12 text-center text-white ddd" style="position:relative;">
+						<h6 class="text-white text-uppercase" style="margin: 20px;font-weight:bold;">Belle expérience</h6>
+						<p class="" style="color:#fff;font-size:23px;margin-right:80px;">Commencez vos week-ends avec un camping sauvage: -20% sur votre prochain sejour</p>
+					</div>
+
+				</div>
+
+			</div>
+			<a href="#gallary" class="btn btn-outline-light ms-3" >Nos Events</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="item">
+			<div class="work"  >
+
+
+		<div class="img d-flex align-items-center justify-content-center" style='background-image: url('{% static './images/p.jpg' %}')' >
+					<div class="text text-center">
+						<div class="container dd" style="height: 230px;">
+
+			<div class="scroll-box">
+					<div  class="scroll-text">Pour vos Vacances réussis choisissez CampingBenin  </div>
+					<marquee behavior="" direction="">Bla bla bla bla bla bla bla bla bla bla serge serge serge 123 123 123 </marquee>
+				</div>
+			<div class="row" style='margin-bottom:50px;'>
+				<div class="col-12 col-lg-10 offset-lg-1 text-white ">
+					<h6 class="text-white text-uppercase" style="margin:20;font-weight:bold"></h6>
+					<p class="" style="color:#fff;font-size:23px;">Envie d'évasion ? Réserver votre  prochain week-end</p>
+					<!-- <a href="#services" class="btn btn-brand ms-3">Reserver</a> -->
+				</div>
+			</div>
+		</div>
+		<div class="blink bg-black">
+			<p style='background-color:red;border-radius:6px;margin-bottom:50px;'> 100 places Disponibles</p>
+		</div>
+					<a href="{% url 'reservation' %}" class="btn btn-outline-light ms-3">Reserver</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="item">
+			<div class="work">
+	   <div class="img d-flex align-items-center justify-content-center">
+	  <div class="text text-center">
+		<div class="container dd" style="height: 230px;">
+			<div class="row">
+				<div class="col-12 text-center text-white ddd">
+					<h6 class="text-white text-uppercase" style='font-weight:bold;margin: 20;'>Pour l'avenir</h6>
+					<p class="" style="color:#fff;font-size:23px;margin-right:80px;">Commencez vos week-ends avec un camping sauvage: -20% sur votre prochain sejour</p>
+				</div>
+			</div>
+		</div>
+		<a href="#blog" class="btn btn-outline-light ms-3">Les Details</a>
+
+	  </div>
+	 </div>
+			</div>
+		</div>
+ </div>
+
+		<div class="my-5 text-center">
+	<ul class="thumbnail">
+		<li class="active img"><a href="#"><img src=" {% static './images/p.jpg' %} " alt="Image" class="img-fluid" style='height:100px;width:100px;'></a></li>
+		<li ><a href="#"><img src=" {% static './images/ama3.jpeg' %} " alt="Image" class="img-fluid" style='height:100px;width:100px;'></a></li>
+		<li><a href="#"><img src=" {% static './images/ama5.jpeg' %} " alt="Image" class="img-fluid" style='height:100px;width:100px;'></a></li>
+	</ul>
+	   </div>
+	  </div>
+	 </div>
+	</div>
+ </div>{% endcomment %}
+{% comment %} </section>  ftco-section{% endcomment %}
+ <section class=""style="width:92%;margin-right:auto;margin-left:auto;"> 
+ {% comment %} <div class="container">  {% endcomment %}
+		<div class="row" style="">
+			<div class="col-md-12">
+				<div class="slider-hero">
+					<div class="featured-carousel owl-carousel" style='margin-top:90px;'>
+						<div class="item"> 
+							<div class="work bg-image">
+								<div class="img d-flex align-items-center justify-content-center" style="background-image: url({% static './images/ima_36.jpg' %});height:500px;">
+									
+									<div class="" style='position:;bottom: 180px;right:500px;'>
+										<h5 class="card1-title" style="color:#fff;">Belle experience</h5>
+										<p class="card1-description" style="color:#fff;">Commencez vos week-ends avec un camping sauvage: -20% sur votre prochain sejour</p>
+										<a href="#gallary" class="card1-button" style="margin-left:0px;">Nos Events</a>
+									  </div>
+								</div> 
+
+
+							</div>
+						</div>
+						<div class="item">
+							<div class="work">
+								<div class="img d-flex align-items-center justify-content-center mask" style="background-image: url({% static './images/ima_3.jpg' %});height:500px;">
+									{% comment %} <marquee class="scroll-text">Pour réusir vos vacances et weekend, choissisez CampingBenin</marquee> {% endcomment %}
+									<marquee style="margin-top:-320px;font-size:20px;font-weight:bold;color:#ffa500;">Réussir vos vacances et weekend avec CampingBenin</marquee>
+									{% comment %} <div class="typing-text">Réussir vos vacances et weekend avec CampingBenin</div> {% endcomment %}
+
+									<div class="card1">
+										<h5 class="card1-title">Camping Allada</h5>
+										<p class="card1-description">Le camping à Allada offre une expérience de voyage unique qui permet de se rapprocher de la nature tout en découvrant les traditions locales.</p>
+										<a href="{% url 'reservation' %}" class="card1-button">Reserver</a>
+									  </div>
+								</div>
+							</div>
+						</div> <div class="item">
+							<div class="work">
+								<div class="img d-flex align-items-center justify-content-center" style="background-image: url({% static './images/ima_17.jpg' %});;height:500px;background-size:cover;">
+									{% comment %} <div class="typing-text">Pour réussir vos vacances et weekend, choisissez CampingBenin</div>{% endcomment %}
+									<div class="card1">
+										<h5 class="card1-title">Dans un futur proche</h5>
+										<p class="card1-description">Préparez-vous à vivre une expérience de camping inoubliable!</p>
+										<a href="#events" class="card1-button">Details</a>
+									  </div>
+								</div>
+							</div>
+						</div>
+					</div> 
+
+					<div class="my-5 text-center" >
+			  <ul class="thumbnail" >
+				<li class="active img"><a href="#"><img src="{% static './images/ima_36.jpg' %}" alt="Image" class="img-fluid" style='height:80px;width:80px;margin-top:-10px;'></a></li>
+				<li><a href="#" class=""><img src="{% static './images/ima_3.jpg' %}" alt="Image" class="img-fluid" style='height:80px;width:80px;margin-top:-10px;'></a></li>
+				<li><a href="#"><img src="{% static './images/ima_17.jpg' %}" alt="Image" class="img-fluid" style='height:80px;width:80px;margin-top:-10px;'></a></li>
+			  </ul>
+			</div>
+				</div>
+			</div>
+		</div>
+ {% comment %} </div>  {% endcomment %}
+ </section> 
+	{% endblock content %}
+
+	{% block script %}
+	<script>
+		$(document).ready(function(){
+			setInterval(function(){
+			  $(".featured-carousel").find(".owl-next").trigger("click");
+			},5000);
+		  });
+
+
+
+	</script>
+	{% endblock script %}
+
+
+
+
+
+
+
